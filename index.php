@@ -1,6 +1,6 @@
 <?php
 
-    include("SfsApplication.php");
+    include(__DIR__ . "/src/SfsApplication.php");
     $app = new SfsApplication();
     $fm = $app->getFm();
 ?>
@@ -82,7 +82,7 @@
     <header class="masthead">
       <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
-            <form action="upload.php"
+            <form action="/src/upload.php"
                   class="dropzone"
                   id="file-uploader"></form>
             <a href="#about" class="btn btn-primary js-scroll-trigger">Clear</a>

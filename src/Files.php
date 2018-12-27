@@ -5,7 +5,7 @@
  * Date: 12/26/18
  * Time: 9:31 AM
  */
-require __DIR__ . '/vendor/autoload.php';
+
 
 class Files
 {
@@ -19,7 +19,7 @@ class Files
     public function __construct(SfsApplication $app)
     {
         $this->app = $app;
-        $config = new \JamesMoss\Flywheel\Config(__DIR__.'/db');
+        $config = new \JamesMoss\Flywheel\Config($this->app->getBaseDir() . '/../db');
         $this->repo = new \JamesMoss\Flywheel\Repository('files', $config);
     }
 

@@ -23,7 +23,7 @@
     };
 
     function updateTable(){
-        $.get("table.php", function(results){
+        $.get("/src/table.php", function(results){
             filesTableBody.empty();
             filesTableBody.append(results);
             console.log(results);
@@ -32,7 +32,7 @@
     }
     $(document).ready(function(){
         testButton.on("click",function(){
-            $.get("table.php", function(results){
+            $.get("/src/table.php", function(results){
                 filesTableBody.empty();
                 filesTableBody.append(results);
                 console.log(results);

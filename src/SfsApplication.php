@@ -5,8 +5,6 @@
  * Date: 12/26/18
  * Time: 11:40 AM
  */
-include("Helper.php");
-include("Files.php");
 
 class SfsApplication
 {
@@ -20,8 +18,11 @@ class SfsApplication
      */
     public function __construct()
     {
-        $this->fm = new Files($this);
         $this->settings = include("config.php");
+        require $this->settings["baseDir"] . '/../vendor/autoload.php';
+        include("Helper.php");
+        include("Files.php");
+        $this->fm = new Files($this);;
     }
 
     /**
