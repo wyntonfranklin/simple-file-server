@@ -1,0 +1,14 @@
+{
+    "name": "shady/simple-file-server",
+    "description": "Simple file server",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wynton Franklin",
+            "email": "wynton.franklin@gmail.com"
+        }
+    ],
+    "require": {
+        "jamesmoss/flywheel": "^0.5.2"
+    }
+}

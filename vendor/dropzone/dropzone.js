@@ -156,7 +156,7 @@
         <span class='msg-title'>Drop files anywhere to upload</span></br>\
         <span class='msg-option'>or</span></br>\
         <span class='msg-button'>Select Files</span></br>\
-        <span>Maximum Upload Size: 8mb</span>\
+        <span id='max-size-text'>Maximum Upload Size: 8mb</span>\
         </div>",
             dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
             dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",

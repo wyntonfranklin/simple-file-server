@@ -2,3 +2,8 @@ node_modules
 .sass-cache
 bower_components
 upload/
+.idea/
+/vendor/
+db/
+scss/
+vendor

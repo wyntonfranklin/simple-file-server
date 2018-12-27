@@ -1,3 +1,11 @@
+<?php
+
+    include("SfsApplication.php");
+    $app = new SfsApplication();
+    $fm = $app->getFm();
+?>
+
+<!-- View Section  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple File Server</title>
+    <title><?php echo $app->getAppName();?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +30,8 @@
     <link href="css/grayscale.min.css" rel="stylesheet">
     <link href="vendor/dropzone/dropzone.css" rel="stylesheet">
     <link href="vendor/magnific/magnific-popup.css" rel="stylesheet">
+    <link href="vendor/DataTables/datatables.css" rel="stylesheet">
+
 
   </head>
   <style>
@@ -34,6 +44,15 @@
       .chooser-files a {
           text-decoration: none!important;
       }
+      .files-layout{
+          padding: 15px;
+          background: #fff;
+          margin-bottom: 15px;
+          margin-top: 10px;
+          -webkit-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.75);
+          -moz-box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.75);
+          box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.75);
+      }
   </style>
 
   <body id="page-top">
@@ -41,7 +60,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Simple File Server</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><?php echo $app->getAppName();?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -65,7 +84,7 @@
         <div class="mx-auto text-center">
             <form action="upload.php"
                   class="dropzone"
-                  id="my-awesome-dropzone"></form>
+                  id="file-uploader"></form>
             <a href="#about" class="btn btn-primary js-scroll-trigger">Clear</a>
         </div>
         </div>
@@ -78,49 +97,29 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2 class="text-white mb-4">My Files</h2>
-                    <div style="padding: 5px; background: #fff; margin-bottom: 10px; margin-top: 10px;">
-                        <table class="table table-bordered">
-
-                            <tr>
+                    <div style="" class="files-layout">
+                        <table id="files-table" class="table table-bordered" style="text-align: left;">
+                            <thead>
                                 <th scope="col">File Name</th>
-                                <th scope="col">File Location</th>
-                                <th scope="col">Copy</th>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
-                            <tr>
-                                <td>customer-service-icon.png</td>
-                                <td><a>https://core.xhuma.co/uploads/2018/12/n9datm.png</a></td>
-                                <td>10</td>
-                            </tr>
+                                <th scope="col">Uploaded On</th>
+                                <th scope="col">Actions</th>
+                            </thead>
+                            <tbody id="files-body">
+                            <?php foreach($fm->getAllFiles() as $file ): ?>
+                                <tr>
+                                    <td><a target="_blank" href="<?php echo $file->url;?>">
+                                            <?php echo $file->name;?></a></td>
+                                    <td><?php echo $file->dateAdded;?></td>
+                                    <td><i class="fa fa-copy fa-fw"></i>&nbsp;
+                                        <a target="_blank" href="<?php echo $file->url;?>" class="image-link">
+                                            <i class="fa fa-eye fa-fw"></i>
+                                        </a>
+                                        &nbsp;
+                                        <i class="fa fa-trash fa-fw"></i>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -166,11 +165,12 @@
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="vendor/dropzone/dropzone.js"></script>
+    <script src="vendor/DataTables/datatables.js"></script>
     <script src="vendor/magnific/jquery.magnific-popup.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
+    <script src="js/sfs.js"></script>
 
   </body>
-
 </html>
