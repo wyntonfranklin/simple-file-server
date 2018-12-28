@@ -8,12 +8,13 @@
 // Check if the form was submitted
 include("SfsApplication.php");
 $app = new SfsApplication();
+$app->authenticate();
 $fm = $app->getFm();
 $uploadDir = $fm->getDatedFolder();
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if file was uploaded without errors
     if(isset($_FILES["file"]) && $_FILES["file"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+        $allowed = $fm->getAllowedFiles();
         $filename = $_FILES["file"]["name"];
         $filetype = $_FILES["file"]["type"];
         $filesize = $_FILES["file"]["size"];
@@ -23,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
 
         // Verify file size - 5MB maximum
-        $maxsize = 5 * 1024 * 1024;
+        $maxsize = intval( $fm->getMaxUploadFileSize() ) * 1024 * 1024;
         if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
 
         // Verify MYME type of the file

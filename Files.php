@@ -19,7 +19,7 @@ class Files
     public function __construct(SfsApplication $app)
     {
         $this->app = $app;
-        $config = new \JamesMoss\Flywheel\Config($this->app->getBaseDir() . '/../db');
+        $config = new \JamesMoss\Flywheel\Config($this->app->getBaseDir() . '/db');
         $this->repo = new \JamesMoss\Flywheel\Repository('files', $config);
     }
 
@@ -134,6 +134,18 @@ class Files
             $string .= $characters[mt_rand(0, $max)];
         }
         return $string;
+    }
+
+    public function getAllowedFiles()
+    {
+        $settings = $this->app->getSettings();
+        return $settings["files"]["allowed"];
+    }
+
+    public function getMaxUploadFileSize()
+    {
+        $settings = $this->app->getSettings();
+        return $settings["files"]["maxUploadSize"];
     }
 
 }

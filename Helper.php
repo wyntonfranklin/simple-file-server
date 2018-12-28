@@ -19,4 +19,9 @@ class Helper
         return "/home/shady/Documents/simple-file-server";
     }
 
+    public static function dateTime( $value )
+    {
+        return date( "D M j, Y",strtotime( $value ) );
+    }
+
 }

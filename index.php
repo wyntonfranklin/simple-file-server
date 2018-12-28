@@ -1,6 +1,6 @@
 <?php
 
-    include(__DIR__ . "/src/SfsApplication.php");
+    include("SfsApplication.php");
     $app = new SfsApplication();
     $fm = $app->getFm();
 ?>
@@ -56,7 +56,7 @@
   </style>
 
   <body id="page-top">
-
+    <?php echo $app->getJavaScriptSettings();?>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -70,27 +70,50 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">Files</a>
             </li>
+          <?php if($app->isLoggedIn()):?>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#projects">About</a>
+              <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
             </li>
+            <?php else:?>
+              <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="login.php">Login</a>
+              </li>
+            <?php endif;?>
           </ul>
         </div>
       </div>
     </nav>
 
+    <?php if($app->isLoggedIn()):?>
     <!-- Header -->
     <header class="masthead">
       <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
-            <form action="/src/upload.php"
+            <form action="upload.php"
                   class="dropzone"
                   id="file-uploader"></form>
-            <a href="#about" class="btn btn-primary js-scroll-trigger">Clear</a>
+            <a href="javascript:void(0);" class="btn btn-primary js-scroll-trigger">Hi, <?php echo $app->getUserName() ?></a>
         </div>
         </div>
       </div>
     </header>
+    <?php else:?>
+        <!-- Header Login -->
+        <header class="masthead">
+            <div class="container d-flex h-100 align-items-center">
+                <div class="mx-auto text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">Welcome,</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">
+                        to <?php echo $app->getAppName();?>
+                    </h2>
+                    <a href="login.php" class="btn btn-primary js-scroll-trigger">Login</a>
+                </div>
+            </div>
+            </div>
+        </header>
+    <?php endif;?>
 
+    <?php if($app->isLoggedIn()):?>
     <!-- About Section -->
     <section id="about" class="about-section text-center">
         <div class="container">
@@ -107,15 +130,21 @@
                             <tbody id="files-body">
                             <?php foreach($fm->getAllFiles() as $file ): ?>
                                 <tr>
-                                    <td><a target="_blank" href="<?php echo $file->url;?>">
+                                    <td><a id="copy" target="_blank" href="<?php echo $file->url;?>">
                                             <?php echo $file->name;?></a></td>
-                                    <td><?php echo $file->dateAdded;?></td>
-                                    <td><i class="fa fa-copy fa-fw"></i>&nbsp;
-                                        <a target="_blank" href="<?php echo $file->url;?>" class="image-link">
+                                    <td><?php echo Helper::dateTime($file->dateAdded);?></td>
+                                    <td>
+                                        <a  href="<?php echo $file->url;?>" class="image-link">
                                             <i class="fa fa-eye fa-fw"></i>
                                         </a>
-                                        &nbsp;
-                                        <i class="fa fa-trash fa-fw"></i>
+                                        <a href="javascript:void(0);"
+                                           class="copy-file"
+                                           data-clipboard-target="#copy"
+                                           data-clipboard-text="<?php echo $file->url;?>">
+                                            <i class="fa fa-copy fa-fw"></i></a>&nbsp;
+                                        <a data-id="<?php echo $file->getId();?>" href="javascript:void(0):" class="delete-file">
+                                            <i class="fa fa-trash fa-fw"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -126,6 +155,7 @@
             </div>
         </div>
     </section>
+    <?php endif;?>
 
     <!-- Contact Section -->
     <section class="contact-section bg-black">
@@ -135,10 +165,10 @@
           <a href="#" class="mx-2">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="mx-2">
-            <i class="fab fa-facebook-f"></i>
+          <a href="https://wftutorials.wordpress.com/" class="mx-2">
+            <i class="fab fa-wordpress"></i>
           </a>
-          <a href="#" class="mx-2">
+          <a href="https://github.com/wyntonfranklin" class="mx-2">
             <i class="fab fa-github"></i>
           </a>
         </div>
@@ -169,6 +199,8 @@
     <script src="vendor/magnific/jquery.magnific-popup.js"></script>
 
     <!-- Custom scripts for this template -->
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/notify.min.js"></script>
     <script src="js/grayscale.min.js"></script>
     <script src="js/sfs.js"></script>
 
