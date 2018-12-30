@@ -1,7 +1,7 @@
 <?php
 return [
     "appName" => "{app-name}",
-    "baseDir" => dirname(__FILE__) . DIRECTORY_SEPARATOR. '../',
+    "baseDir" => dirname( dirname(__FILE__) ),
     "baseUrl" => "{base-url}",
     "background" => "",
     "installed" => "{installed}",

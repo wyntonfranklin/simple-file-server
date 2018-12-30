@@ -20,7 +20,7 @@ class SfsApplication
     public function __construct()
     {
         $this->settings = include(__DIR__."/src/config.php");
-        require $this->settings["baseDir"] . 'vendor/autoload.php';
+        require $this->settings["baseDir"] . '/vendor/autoload.php';
         include("Helper.php");
         include("Files.php");
         $this->fm = new Files($this);;
@@ -115,7 +115,12 @@ class SfsApplication
 
     public function redirect($file)
     {
-        header("Location: {$file}");
+        $url = $this->getBaseUrl();
+        if(!empty($url)){
+            header("Location: {$url}/{$file}");
+        }else{
+            header("Location: {$file}");
+        }
     }
 
     public function validateCookie($hash)
@@ -172,8 +177,9 @@ class SfsApplication
 
     public function createRequiredFolders()
     {
-        $this->createFolder(__DIR__ . '/upload');
-        $this->createFolder(__DIR__ . '/db');
+        $base = $this->getBaseDir();
+        $this->createFolder($base . '/upload');
+        $this->createFolder($base . '/db');
     }
 
     private function createFolder($path)

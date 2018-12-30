@@ -98,7 +98,6 @@ class Files
         foreach($params as $folder ){
             $path .= $folder . '/';
         }
-        echo $base .$path;
         return $base . $path;
     }
 

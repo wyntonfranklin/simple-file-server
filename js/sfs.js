@@ -1,6 +1,7 @@
 (function($){
     var settings = $("#js-settings").data('value');
     var baseUrl = settings.baseUrl;
+    var clipboard;
     console.log(settings);
     var filesTableBody = $("#files-body");
     var testButton = $("#test-button");
@@ -31,7 +32,7 @@
             filesTableBody.empty();
             filesTableBody.append(results);
            // jTable.search("").data();
-            attachCopyFunction();
+            //attachCopyFunction();
         });
     }
 
@@ -57,10 +58,11 @@
     }
 
     function attachCopyFunction(){
-        var clipboard = new ClipboardJS('.files-layout .copy-file');
-        clipboard.on('success', function(e) {
-            successMessage("File link copied.");
-            e.clearSelection();
+        new ClipboardJS(".files-layout .copy-file", {
+            text: function(trigger) {
+                successMessage("Linked copied");
+                return $(trigger).data("clipboard-text");
+            }
         });
     }
 

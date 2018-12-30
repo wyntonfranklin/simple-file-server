@@ -1,7 +1,7 @@
 <?php
 return [
-    "appName" => "My Server Pictures",
-    "baseDir" => dirname(__FILE__) . DIRECTORY_SEPARATOR. '../',
+    "appName" => "Simple File Server",
+    "baseDir" => dirname( dirname(__FILE__) ),
     "baseUrl" => "http://myserver.dev",
     "background" => "",
     "installed" => "false",

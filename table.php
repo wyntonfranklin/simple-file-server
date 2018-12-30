@@ -17,10 +17,13 @@ $fm = $app->getFm();
         <td><?php echo $file->user;?></td>
         <td><?php echo Helper::dateTime($file->dateAdded);?></td>
         <td>
-            <a class="image-link" target="_blank" href="<?php echo $file->url;?>">
+            <a id="copy" class="image-link" target="_blank" href="<?php echo $file->url;?>">
                 <i class="fa fa-eye fa-fw"></i>
             </a>
-            <a href="javascript:void(0);" class="copy-file">
+            <a href="javascript:void(0);"
+               class="copy-file"
+               data-clipboard-target="#copy"
+               data-clipboard-text="<?php echo $file->url;?>">
                 <i class="fa fa-copy fa-fw"></i></a>&nbsp;
             <a data-id="<?php echo $file->getId();?>" href="javascript:void(0):" class="delete-file">
                 <i class="fa fa-trash fa-fw"></i>
