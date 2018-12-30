@@ -2,9 +2,6 @@
 
     include("SfsApplication.php");
     $app = new SfsApplication();
-    if(!$app->isInstalled()){
-        $app->redirect("install.php");
-    }
     $fm = $app->getFm();
 ?>
 
@@ -77,7 +74,8 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
             </li>
-            <?php else:?>
+            <?php else: ?>
+
               <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="login.php">Login</a>
               </li>
@@ -110,6 +108,9 @@
                         to <?php echo $app->getAppName();?>
                     </h2>
                     <a href="login.php" class="btn btn-primary js-scroll-trigger">Login</a>
+                    <?php if(!$app->isInstalled()):?>
+                        <a href="install.php" class="btn btn-primary js-scroll-trigger">Install</a>
+                    <?php endif;?>
                 </div>
             </div>
             </div>

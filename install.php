@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
     <meta name="author" content="">
 
     <title><?php echo $app->getAppName();?> Installation</title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="css/install.css" rel="stylesheet">
 </head>
 
@@ -35,18 +36,19 @@ if (isset($_POST['submit'])) {
     <div class="wrap-contact100">
         <form class="contact100-form validate-form" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 				<span class="contact100-form-title">
-					Install <?php echo $app->getAppName();?>
+                    <a href="index.php"><i class="fa fa-folder-open fa-2x"></i></a><br>
+                    Install <?php echo $app->getAppName();?>
 				</span>
             <p>Note: You can always edit these values via the config file.</p>
 
             <div class="wrap-input100 validate-input bg1">
                 <span class="label-input100">App Name *</span>
-                <input class="input100" type="text" name="app-name" placeholder="Enter Application Name">
+                <input value="<?php echo $app->getAppName();?>" class="input100" type="text" name="app-name" placeholder="Enter Application Name">
             </div>
 
             <div class="wrap-input100 validate-input bg1">
                 <span class="label-input100">Base Url *</span>
-                <input class="input100" type="text" name="base-url" placeholder="e.g https://www.website.com">
+                <input value="<?php echo $app->getBaseUrl();?>" class="input100" type="text" name="base-url" placeholder="e.g https://www.website.com">
             </div>
 
             <div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
@@ -71,6 +73,14 @@ if (isset($_POST['submit'])) {
                     </select>
                     <div class="dropDownSelect2"></div>
                 </div>
+            </div>
+
+            <div class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Disable this page</span>
+                <select class="js-select2" name="disable-install">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
             </div>
 
             <div class="container-contact100-form-btn">

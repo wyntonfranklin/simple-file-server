@@ -1,0 +1,32 @@
+<?php
+
+namespace JamesMoss\Flywheel;
+
+use \JamesMoss\Flywheel\TestBase;
+
+class CachedQueryTest extends TestBase
+{
+    public function testCache()
+    {
+        if (!ini_get('apc.enable_cli')) {
+            $this->markTestSkipped(
+              'The APC extension is not enabled on the command line. Set apc.enable_cli=1.'
+            );
+        }
+
+        $path   = __DIR__ . '/fixtures/datastore/querytest';
+        $config = new Config($path . '/');
+        $repo   = new Repository('countries', $config);
+        $query  = new CachedQuery($repo);
+
+        $total = 0;
+
+        for ($i = 0; $i < 100; $i++) {
+            $start = microtime(true);
+            $query->where('cca2', '==', 'GB');
+            $query->execute();
+            $total += microtime(true) - $start;
+        }
+
+    }
+}

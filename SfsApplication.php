@@ -185,7 +185,7 @@ class SfsApplication
 
     public function getPost($key, $default)
     {
-        if(isset($_POST[$key])){
+        if(isset($_POST[$key]) && !empty($_POST[$key])){
             return $_POST[$key];
         }
         return $default;
@@ -204,6 +204,7 @@ class SfsApplication
         $maxSize= $app->getPost("max-file-size","5");
         $user = $app->getPost("primary-user","Admin");
         $password = $app->getPost("primary-user-password","password1234");
+        $disableInstall = $app->getPost("disable-install",0);
         $template = file_get_contents(__DIR__. '/src/config-template.php');
         $updates = [
             "{app-name}" =>  $appName,
@@ -211,8 +212,12 @@ class SfsApplication
             "{max-file-size}" => $maxSize,
             "{primary-user}" => $user,
             "{primary-user-password}" => $password,
-            "{installed}" => "true",
         ];
+        if($disableInstall==1){
+            $updates["{installed}"]= "true";
+        }else{
+            $updates["{installed}"]= "false";
+        }
         $template = $this->replaceSettings($updates, $template);
         file_put_contents(__DIR__. '/src/config.php', $template);
         $this->createRequiredFolders();

@@ -3,7 +3,5 @@ node_modules
 bower_components
 upload/
 .idea/
-/vendor/
 db/
 scss/
-vendor

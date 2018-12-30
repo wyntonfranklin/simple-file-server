@@ -44,13 +44,14 @@ if (isset($_POST['submit'])) {
     <meta name="author" content="">
 
     <title><?php echo $app->getAppName();?></title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="login-page">
     <div class="form">
-        <a href="index.php"><img src="img/ipad.png" width="100px"></a>
+        <a href="index.php"><i class="fa fa-folder-open fa-2x"></i></a><br>
         <h3><?php echo $app->getAppName();?></h3>
         <form class="login-form" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
             <input type="text" placeholder="username" name="username"/>

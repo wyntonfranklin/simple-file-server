@@ -1,8 +1,8 @@
 <?php
 return [
-    "appName" => "WF Picture Server",
+    "appName" => "My Server Pictures",
     "baseDir" => dirname(__FILE__) . DIRECTORY_SEPARATOR. '../',
-    "baseUrl" => "myserver.dev",
+    "baseUrl" => "http://myserver.dev",
     "background" => "",
     "installed" => "false",
     'files' => [
@@ -17,7 +17,7 @@ return [
     ],
     "users" => [
         "Admin" => [
-            "password" => "Password1234",
+            "password" => "password1234",
         ],
         // add other users here
     ]
