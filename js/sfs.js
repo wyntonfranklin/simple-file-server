@@ -1,6 +1,8 @@
 (function($){
     var settings = $("#js-settings").data('value');
     var baseUrl = settings.baseUrl;
+    var searchInput= $("#searchBar");
+    var searchButton = $("#search-button");
     var clipboard;
     console.log(settings);
     var filesTableBody = $("#files-body");
@@ -66,6 +68,12 @@
         });
     }
 
+
+    var searchTable = function ( ){
+        var searchInputText = searchInput.val();
+        jTable.search( searchInputText ).draw();
+    };
+
     $(document).ready(function(){
         testButton.on("click",function(){
             $.get(baseUrl + "/table.php", function(results){
@@ -86,6 +94,16 @@
                 successMessage("File deleted successfully.");
                 updateTable();
             });
+        });
+
+        searchButton.on("click",function(){
+            searchTable();
+            return false;
+        });
+        searchInput.keypress(function(e){
+            if(e.which == 13) {
+               searchTable();
+            }
         });
 
         attachCopyFunction();

@@ -57,12 +57,31 @@ class Files
 
     public function getAllFiles()
     {
+        $settings = $this->app->getSettings();
+        if($settings["orderBy"] === "name"){
+            return $this->getFilesByNameAsc();
+        }else if($settings["orderBy"]==="date"){
+            return $this->getFilesByDate();
+        }else{
+            return $this->getFilesByDate();
+        }
+    }
+
+    private function getFilesByNameAsc()
+    {
+        $files = $this->repo->query()
+            ->orderBy('name ASC')
+            ->execute();
+        return $files;
+    }
+
+    private function getFilesByDate()
+    {
         $files = $this->repo->query()
             ->orderBy('dateAdded DESC')
             ->execute();
         return $files;
     }
-
 
     public function getDatedFolder()
     {

@@ -5,6 +5,7 @@ return [
     "baseUrl" => "http://myserver.dev",
     "background" => "",
     "installed" => "false",
+    "orderBy" => "name",
     'files' => [
         "maxUploadSize" => "10", // in mb
         "allowed" =>  [
@@ -16,7 +17,7 @@ return [
         ]
     ],
     "users" => [
-        "Admin" => [
+        "admin" => [
             "password" => "password1234",
         ],
         // add other users here

@@ -208,9 +208,10 @@ class SfsApplication
         $appName = $app->getPost("app-name","Simple File Server");
         $baseUrl = $app->getPost("base-url","");
         $maxSize= $app->getPost("max-file-size","5");
-        $user = $app->getPost("primary-user","Admin");
+        $user = $app->getPost("primary-user","admin");
         $password = $app->getPost("primary-user-password","password1234");
         $disableInstall = $app->getPost("disable-install",0);
+        $order = $app->getPost("order-by","date");
         $template = file_get_contents(__DIR__. '/src/config-template.php');
         $updates = [
             "{app-name}" =>  $appName,
@@ -218,6 +219,7 @@ class SfsApplication
             "{max-file-size}" => $maxSize,
             "{primary-user}" => $user,
             "{primary-user-password}" => $password,
+            "{orderBy}" => $order
         ];
         if($disableInstall==1){
             $updates["{installed}"]= "true";

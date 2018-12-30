@@ -5,6 +5,7 @@ return [
     "baseUrl" => "{base-url}",
     "background" => "",
     "installed" => "{installed}",
+    "orderBy" => "{orderBy}",
     'files' => [
         "maxUploadSize" => "{max-file-size}", // in mb
         "allowed" =>  [

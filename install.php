@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
                     Install <?php echo $app->getAppName();?>
 				</span>
             <p>Note: You can always edit these values via the config file.</p>
-
+            <p><strong>Saving this will overwrite your current configuration file.</strong></p>
             <div class="wrap-input100 validate-input bg1">
                 <span class="label-input100">App Name *</span>
                 <input value="<?php echo $app->getAppName();?>" class="input100" type="text" name="app-name" placeholder="Enter Application Name">
@@ -76,12 +76,26 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="wrap-input100 input100-select bg1">
+                <span class="label-input100">Order Files Listing By *</span>
+                <div>
+                    <select class="js-select2" name="order-by">
+                        <option value="date">Date</option>
+                        <option value="name">Name</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                </div>
+            </div>
+
+
+            <div class="wrap-input100 input100-select bg1">
                 <span class="label-input100">Disable this page</span>
                 <select class="js-select2" name="disable-install">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </select>
             </div>
+
+
 
             <div class="container-contact100-form-btn">
                 <button class="contact100-form-btn" type="submit" name="submit" value="">

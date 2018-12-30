@@ -124,6 +124,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2 class="text-white mb-4">My Files</h2>
+                    <input id="searchBar" type="text" placeholder="Search files"/>
+                    <button id="search-button">Search</button>
                     <div style="" class="files-layout">
                         <table id="files-table" class="table table-bordered" style="text-align: left;">
                             <thead>
@@ -168,9 +170,6 @@
       <div class="container">
 
         <div class="social d-flex justify-content-center">
-          <a href="#" class="mx-2">
-            <i class="fab fa-twitter"></i>
-          </a>
           <a href="https://wftutorials.wordpress.com/" class="mx-2">
             <i class="fab fa-wordpress"></i>
           </a>
