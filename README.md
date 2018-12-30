@@ -1,4 +1,4 @@
-# [Simple File Server](https://startbootstrap.com/template-overviews/grayscale/)
+# [Simple File Server](http://www.igestdevelopment.com/sfs)
 
 Simple file server is a quick and easy way to run a file server on you Linux machine. It uses an file database to index your uploads. Images and files are saved in month/year format. e.g 2018/12/image.png. You can create multiple users via a configuration path. 
 
@@ -16,7 +16,8 @@ To begin using the Simple File server you can do the following.
 * Clone the repo to your server: `git clone https://github.com/wyntonfranklin/simple-file-server.git` or
 * [Fork, Clone, or Download on GitHub](https://github.com/wyntonfranklin/simple-file-server.git)
 * Rename the directory to something you like `mv simple-file-server sfs`
-* Give you server access to the folders - `chmod -R 0775 sfs`
+* Give you server access to the folders - `sudo chmod -R 0775 sfs`
+* Give apache access to the folder - `sudo chown -R www-data:www-data sfs`
 * Thats it!  - you should see the above image once you navigate to the correct folder on your server.
 
 
@@ -30,6 +31,7 @@ After downloading, go the main directory where the application is located. You s
 - Click the intstall button
 - Add the required information ( app name, base url, default user )
 - Save the configuration by clicking the submit button - you should be redirected to the main screen
+- You may need to refresh the page to see the changed information.
 
 **You have the option to disable the install.php file. Once you do this you will have to edit the configuration from your server. This is ideal and you should only use the install.php file once.**
 

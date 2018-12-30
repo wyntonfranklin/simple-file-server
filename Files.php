@@ -106,13 +106,13 @@ class Files
     {
         $new_path = $this->createPath(array(self::FOLDER_NAME,$year, $day));
         if(!file_exists($new_path)){
-            mkdir($new_path,0777,true);
+            mkdir($new_path,0755,true);
         }
     }
 
     private function createPath($params)
     {
-        $base = $_SERVER['DOCUMENT_ROOT'] . '/';
+        $base = $this->app->getBaseDir() . '/';
         $path ='';
         foreach($params as $folder ){
             $path .= $folder . '/';

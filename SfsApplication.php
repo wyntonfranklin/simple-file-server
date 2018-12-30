@@ -113,14 +113,24 @@ class SfsApplication
         $this->redirect("index.php");
     }
 
-    public function redirect($file)
+    public function redirect($file, $url="" )
     {
-        $url = $this->getBaseUrl();
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
+        if(empty($url))
+            $url = $this->getBaseUrl();
         if(!empty($url)){
             header("Location: {$url}/{$file}");
         }else{
             header("Location: {$file}");
         }
+        die();
+    }
+
+    private function getNoCacheCode()
+    {
+        return "?v=" . $this->randomName();
     }
 
     public function validateCookie($hash)
@@ -206,7 +216,7 @@ class SfsApplication
     {
         $app = $this;
         $appName = $app->getPost("app-name","Simple File Server");
-        $baseUrl = $app->getPost("base-url","");
+        $baseUrl = $app->getPost("base-url",$this->defaultBaseUrl());
         $maxSize= $app->getPost("max-file-size","5");
         $user = $app->getPost("primary-user","admin");
         $password = $app->getPost("primary-user-password","password1234");
@@ -229,7 +239,7 @@ class SfsApplication
         $template = $this->replaceSettings($updates, $template);
         file_put_contents(__DIR__. '/src/config.php', $template);
         $this->createRequiredFolders();
-        $this->redirect("index.php");
+        $this->redirect("index.php", $baseUrl);
     }
 
     private function replaceSettings($data, $settings)
@@ -238,6 +248,27 @@ class SfsApplication
             $settings = str_replace($key,$value, $settings);
         };
         return $settings;
+    }
+
+    private function defaultBaseUrl()
+    {
+        return sprintf(
+            "%s://%s%s",
+            isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+            $_SERVER['SERVER_NAME'],
+            $_SERVER['REQUEST_URI']
+        );
+    }
+
+    public function randomName($num = 6)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $string = '';
+        $max = strlen($characters) - 1;
+        for ($i = 0; $i < $num; $i++) {
+            $string .= $characters[mt_rand(0, $max)];
+        }
+        return $string;
     }
 
 

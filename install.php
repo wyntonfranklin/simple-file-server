@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
 <div class="container-contact100">
     <div class="wrap-contact100">
-        <form class="contact100-form validate-form" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+        <form class="contact100-form validate-form" action="install.php" method="post">
 				<span class="contact100-form-title">
                     <a href="index.php"><i class="fa fa-folder-open fa-2x"></i></a><br>
                     Install <?php echo $app->getAppName();?>

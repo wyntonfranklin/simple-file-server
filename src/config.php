@@ -5,7 +5,7 @@ return [
     "baseUrl" => "http://myserver.dev",
     "background" => "",
     "installed" => "false",
-    "orderBy" => "name",
+    "orderBy" => "date",
     'files' => [
         "maxUploadSize" => "10", // in mb
         "allowed" =>  [
