@@ -4,7 +4,6 @@
     var searchInput= $("#searchBar");
     var searchButton = $("#search-button");
     var clipboard;
-    console.log(settings);
     var filesTableBody = $("#files-body");
     var testButton = $("#test-button");
     var jTable = $('#files-table').DataTable({
