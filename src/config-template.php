@@ -1,12 +1,12 @@
 <?php
 return [
-    "appName" => "WF Picture Server",
+    "appName" => "{app-name}",
     "baseDir" => dirname(__FILE__) . DIRECTORY_SEPARATOR. '../',
-    "baseUrl" => "myserver.dev",
+    "baseUrl" => "{base-url}",
     "background" => "",
-    "installed" => "false",
+    "installed" => "{installed}",
     'files' => [
-        "maxUploadSize" => "10", // in mb
+        "maxUploadSize" => "{max-file-size}", // in mb
         "allowed" =>  [
             "jpg" => "image/jpg",
             "jpeg" => "image/jpeg",
@@ -16,8 +16,8 @@ return [
         ]
     ],
     "users" => [
-        "Admin" => [
-            "password" => "Password1234",
+        "{primary-user}" => [
+            "password" => "{primary-user-password}",
         ],
         // add other users here
     ]

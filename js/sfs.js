@@ -59,7 +59,7 @@
     function attachCopyFunction(){
         var clipboard = new ClipboardJS('.files-layout .copy-file');
         clipboard.on('success', function(e) {
-            successMessage("File copied successfully.");
+            successMessage("File link copied.");
             e.clearSelection();
         });
     }

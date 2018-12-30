@@ -14,6 +14,7 @@ $fm = $app->getFm();
     <tr>
         <td><a target="_blank" href="<?php echo $file->url;?>">
                 <?php echo $file->name;?></a></td>
+        <td><?php echo $file->user;?></td>
         <td><?php echo Helper::dateTime($file->dateAdded);?></td>
         <td>
             <a class="image-link" target="_blank" href="<?php echo $file->url;?>">

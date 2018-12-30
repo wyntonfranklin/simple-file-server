@@ -2,6 +2,9 @@
 
     include("SfsApplication.php");
     $app = new SfsApplication();
+    if(!$app->isInstalled()){
+        $app->redirect("install.php");
+    }
     $fm = $app->getFm();
 ?>
 
@@ -124,6 +127,7 @@
                         <table id="files-table" class="table table-bordered" style="text-align: left;">
                             <thead>
                                 <th scope="col">File Name</th>
+                                <th scope="col">User</th>
                                 <th scope="col">Uploaded On</th>
                                 <th scope="col">Actions</th>
                             </thead>
@@ -132,6 +136,7 @@
                                 <tr>
                                     <td><a id="copy" target="_blank" href="<?php echo $file->url;?>">
                                             <?php echo $file->name;?></a></td>
+                                    <td><?php echo $file->user;?></td>
                                     <td><?php echo Helper::dateTime($file->dateAdded);?></td>
                                     <td>
                                         <a  href="<?php echo $file->url;?>" class="image-link">

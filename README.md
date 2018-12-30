@@ -1,6 +1,6 @@
-# [Start Bootstrap - Grayscale](https://startbootstrap.com/template-overviews/grayscale/)
+# [Simple File Server](https://startbootstrap.com/template-overviews/grayscale/)
 
-[Grayscale](http://startbootstrap.com/template-overviews/grayscale/) is a multipurpose, one page HTML theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
+Simple file server is a quick and easy way to run a file server on you linux machine. It uses an file database to index your uploads. Images and files are saved in month/year format. e.g 2018/12/pic.png. You can create multiple users via a configuration path. 
 
 ## Preview
 
@@ -8,21 +8,30 @@
 
 **[View Live Preview](https://blackrockdigital.github.io/startbootstrap-grayscale/)**
 
-## Status
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-grayscale/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-grayscale.svg)](https://www.npmjs.com/package/startbootstrap-grayscale)
-[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-grayscale.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-grayscale)
-[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-grayscale/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-grayscale)
-[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-grayscale/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-grayscale?type=dev)
 
 ## Download and Installation
 
-To begin using this template, choose one of the following options to get started:
+To begin using the Simple File server you can do the following.
 * [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/grayscale/)
 * Install via npm: `npm i startbootstrap-grayscale`
 * Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-grayscale.git`
 * [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-grayscale)
+
+
+
+## Features
+
+Simple file server has some cool features.
+
+- Create multiple users
+- Login and logout
+- Upload multiple files
+- Search file listing
+- View files by name, date
+- Copy link to files and share with others
+
+
 
 ## Usage
 
@@ -50,9 +59,7 @@ Start Bootstrap has a public Slack channel which is a great place to ask questio
 
 **[Click here to join the Slack channel!](https://startbootstrap-slack.herokuapp.com/)**
 
-## Bugs and Issues
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-grayscale/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/grayscale/).
 
 ## About
 
@@ -72,4 +79,4 @@ Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework 
 ## Copyright and License
 
 Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/gh-pages/LICENSE) license.
-# simple-file-serverr
+

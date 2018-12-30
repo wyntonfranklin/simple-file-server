@@ -101,7 +101,8 @@ class SfsApplication
         return $user["password"];
     }
 
-    public function setCookie(){
+    public function setCookie()
+    {
         $sid = $this->startSession();
         $_POST['username'] = stripslashes($_POST['username']);
         $user = $this->getUser($_POST['username']);
@@ -153,7 +154,8 @@ class SfsApplication
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         setcookie(self::COOKIE_NAME, "", time()-3600);
         session_unset();
     }
@@ -166,6 +168,63 @@ class SfsApplication
             "maxUploadSize" => $settings["files"]["maxUploadSize"],
         ];
         return "<div id='js-settings' data-value='".json_encode($publicSettings)."'></div>";
+    }
+
+    public function createRequiredFolders()
+    {
+        $this->createFolder(__DIR__ . '/upload');
+        $this->createFolder(__DIR__ . '/db');
+    }
+
+    private function createFolder($path)
+    {
+        if(!file_exists($path)){
+            mkdir($path,0777,true);
+        }
+    }
+
+    public function getPost($key, $default)
+    {
+        if(isset($_POST[$key])){
+            return $_POST[$key];
+        }
+        return $default;
+    }
+
+    public function isInstalled()
+    {
+        return filter_var($this->getSettings()["installed"], FILTER_VALIDATE_BOOLEAN);
+    }
+
+    public function updateConfigFile()
+    {
+        $app = $this;
+        $appName = $app->getPost("app-name","Simple File Server");
+        $baseUrl = $app->getPost("base-url","");
+        $maxSize= $app->getPost("max-file-size","5");
+        $user = $app->getPost("primary-user","Admin");
+        $password = $app->getPost("primary-user-password","password1234");
+        $template = file_get_contents(__DIR__. '/src/config-template.php');
+        $updates = [
+            "{app-name}" =>  $appName,
+            "{base-url}" => $baseUrl,
+            "{max-file-size}" => $maxSize,
+            "{primary-user}" => $user,
+            "{primary-user-password}" => $password,
+            "{installed}" => "true",
+        ];
+        $template = $this->replaceSettings($updates, $template);
+        file_put_contents(__DIR__. '/src/config.php', $template);
+        $this->createRequiredFolders();
+        $this->redirect("index.php");
+    }
+
+    private function replaceSettings($data, $settings)
+    {
+        foreach ($data as $key=>$value){
+            $settings = str_replace($key,$value, $settings);
+        };
+        return $settings;
     }
 
 

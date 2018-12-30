@@ -45,6 +45,7 @@ class Files
             'dateAdded' => date("Y-m-d h:i:s"),
             'path'      => $path,
             'url'       => $url,
+            "user" => $this->app->getUserName()
         ));
         $this->saveFile($file);
     }
@@ -63,30 +64,6 @@ class Files
     }
 
 
-
-    public static function _getFiles()
-    {
-        $files_list = array();
-        $dir = __DIR__ . '/upload';
-        try{
-            if ($handle = opendir($dir)) {
-                while (false !== ($entry = readdir($handle))) {
-                    if ($entry != "." && $entry != "..") {
-                        $files_list[] = array(
-                            'filename' =>	$entry,
-                            'filesize' => filesize($dir.DIRECTORY_SEPARATOR.$entry),
-                            'modified' => date("F d Y H:i:s.",filemtime($dir.DIRECTORY_SEPARATOR.$entry))
-                        );
-                    }
-                }
-                closedir($handle);
-            }
-        }catch (FileNotFoundException $e){
-
-        }
-        return $files_list;
-    }
-
     public function getDatedFolder()
     {
         $year = date('Y');
@@ -99,7 +76,7 @@ class Files
     {
         $year = date('Y');
         $day = date('m');
-        $baseUrl = Helper::baseUrl();
+        $baseUrl = $this->app->getBaseUrl();
         return $baseUrl . '/'
             . self::FOLDER_NAME . '/'
             . $year . '/' . $day . '/' . $file;
